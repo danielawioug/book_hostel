@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Book Hostel</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_banner">Welcome to Book Hostel</string>
+    <string name="book_hostel_logo_alt_text">Logo Alt Text</string>
+    <string name="student_text">STUDENT</string>
+    <string name="register_btn_text">Register</string>
+    <string name="login_btn_text">Log In</string>
+    <string name="hostel_man">Hostel Manager</string>
+    <string name="hostel_man_alt">img_alt</string>
+    <string name="temp">temp</string>
+    <string name="user_profile_img">User Profile Img</string>
+    <string name="location_edit">location_edit</string>
+    <string name="location_add">location_add</string>
+    <string name="connection_lost">No connection to google servers.</string>
+    <string name="no_user">Unknown Credentials!</string>
+    <string name="main_continue">Continue</string>
+    <string name="name">Name</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_no">Phone No.</string>
+    <string name="address">Address:</string>
+    <string name="city">City</string>
+    <string name="email">Email Address:</string>
+    <string name="register">Register</string>
+    <string name="bh_logo">bh_logo</string>
+    <string name="hostel_name">Hostel Name</string>
+    <string name="back_button">Back Button</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="home_label">| Home |</string>
+    <string name="hostels">Hostels</string>
+    <string name="account">Account</string>
+    <string name="settings">Settings</string>
+    <string name="payment">Payment</string>
+    <string name="status_of_your_booking">Status of your booking</string>
+    <string name="upload_hostel_info">Upload Hostel Info</string>
+    <string name="update_existing_info">Update Existing Info</string>
+    <string name="bookings_made">Bookings Made</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="change_font_style">Change Font Style</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="hostel_location">Hostel Location</string>
+    <string name="view_hostel_details">View Hostel Details</string>
+    <string name="overall_rating">Overall Rating</string>
+    <string name="more_item">More Item</string>
+    <string name="book">Book</string>
+    <string name="room_price">Room Price</string>
+    <string name="room_description">Room Description</string>
+    <string name="room_image">room Image</string>
+    <string name="hostel_rooms">Hostel Rooms</string>
+    <string name="booked_by_female_student">Booked by Female Student</string>
+    <string name="wanting_female_roommate">Wanting Female Roommate</string>
+    <string name="location_name_get_error">An error occurred  Getting location</string>
+    <string name="log_out">Log Out</string>
+    <string name="number_of_doubles">Number of Doubles</string>
+    <string name="number_of_single_rooms">Number of Single Rooms</string>
+    <string name="number_of_double_rooms">Number of Double Rooms</string>
+    <string name="number_of_singles">Number of Singles</string>
+    <string name="price_reg">Price</string>
+    <string name="average_room_price">Average Room Price</string>
+</resources>
