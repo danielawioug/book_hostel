@@ -13,6 +13,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            app:layout_constraintVertical_bias="0.024">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/singRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/doubRoom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_sing_hostel_room"
+                    android:layout_width="136dp"
+                    android:layout_height="147dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/room_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/ic_channel" />
+
+                <TextView
+                    android:id="@+id/txt_sing_room_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Single Rooms"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_sing_hostel_room"
+                    app:layout_constraintTop_toTopOf="@+id/img_sing_hostel_room" />
+
+                <TextView
+                    android:id="@+id/txt_sing_room_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/room_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_sing_room_description"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_sing_room_description" />
+
+                <Button
+                    android:id="@+id/btn_sing_book_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/book"
+                    app:layout_constraintStart_toStartOf="@+id/txt_sing_room_price"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_sing_room_price" />
+
+                <TextView
+                    android:id="@+id/txt_sing_num_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Room Num"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_sing_book_room"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_sing_book_room"
+                    app:layout_constraintTop_toTopOf="@+id/btn_sing_book_room" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/doubRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/singRoom">
+
+                <ImageView
+                    android:id="@+id/img_doub_hostel_room"
+                    android:layout_width="136dp"
+                    android:layout_height="147dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/room_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/ic_channel" />
+
+                <TextView
+                    android:id="@+id/txt_doub_room_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Double Rooms"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_doub_hostel_room"
+                    app:layout_constraintTop_toTopOf="@+id/img_doub_hostel_room" />
+
+                <TextView
+                    android:id="@+id/txt_doub_room_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/room_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_doub_room_description"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_doub_room_description" />
+
+                <Button
+                    android:id="@+id/btn_doub_book_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/book"
+                    app:layout_constraintStart_toStartOf="@+id/txt_doub_room_price"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_doub_room_price" />
+
+                <TextView
+                    android:id="@+id/txt_doub_num_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Room Num"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_doub_book_room"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_doub_book_room"
+                    app:layout_constraintTop_toTopOf="@+id/btn_doub_book_room" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ImageButton
             android:id="@+id/btn_back_room"
             android:layout_width="wrap_content"
@@ -49,18 +191,5 @@
             app:layout_constraintTop_toTopOf="@+id/btn_back_room"
             app:srcCompat="@drawable/ic_hamburger" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/room_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_back_room"
-            tools:listitem="@layout/room_view_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -20,6 +22,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.Query;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import lan.tmsystem.bookhostel.data.DataManager;
 import lan.tmsystem.bookhostel.data.Hostel;
@@ -67,7 +72,7 @@ public class HostelsActivity extends AppCompatActivity {
             @NonNull
             @Override
             public HostelHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hostel_card_view, parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hostel_card_view, parent, false);
                 return new HostelHolder(view);
             }
         };
@@ -87,12 +92,16 @@ public class HostelsActivity extends AppCompatActivity {
             TextView textHostelName = view.findViewById(R.id.text_hostels_name);
             TextView textHostelLocation = view.findViewById(R.id.text_hostel_location);
             TextView linkToHostel = view.findViewById(R.id.link_to_hostel);
+            RatingBar ratingBar = view.findViewById(R.id.ratingBar);
 
             linkToHostel.setOnClickListener(v -> {
 //                Intent intent = new Intent(view.getContext(), HostelRooms.class);
 //                view.getContext().startActivity(intent);
-                Intent intent = new Intent(view.getContext(), PaymentsActivity.class);
-                intent.putExtra("price", data.getPrice().toString());
+                Intent intent = new Intent(view.getContext(), HostelRooms.class);
+                List<String> rooms = new ArrayList<>();
+                rooms.add(data.getNumSingles());
+                rooms.add(data.getNumDoubles());
+                intent.putExtra("hostel", (Serializable)rooms);
                 view.getContext().startActivity(intent);
             });
 
@@ -102,7 +111,10 @@ public class HostelsActivity extends AppCompatActivity {
             Geocoder _g = new Geocoder(view.getContext());
 
             try {
-                textHostelLocation.setText(_g.getFromLocation(data.getLocation().getLatitude(), data.getLocation().getLongitude(), 1).get(0).getAddressLine(0));
+                ratingBar.setRating(0);
+                List<Address> loc = _g.getFromLocation(data.getLocation().getLatitude(), data.getLocation().getLongitude(), 1);
+                if (loc.size() > 0)
+                    textHostelLocation.setText(_g.getFromLocation(data.getLocation().getLatitude(), data.getLocation().getLongitude(), 1).get(0).getAddressLine(0));
                 textHostelName.setTextSize(20);
             } catch (IOException e) {
                 textHostelLocation.setText(R.string.location_name_get_error);

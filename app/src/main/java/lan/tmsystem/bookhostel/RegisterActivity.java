@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.WriteBatch;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -125,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                                 Log.w("RegisterFail:", "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(RegisterActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                updateUI(null, null);
+                                updateUI(null);
                             }
                         }
                     });
@@ -147,56 +148,70 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             userData.put("hostel", mTextHostelName.getText().toString());
             userData.put("manager", true);
         }
-        mDb.collection(mCollection)
-                .add(userData)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
+        WriteBatch batch = mDb.batch();
+        final DocumentReference sfDocRef = mDb.collection(mCollection)
+                .document(mFirstName.getText().toString() + "-" + mLastName.getText().toString() + "-data");
+        batch.set(sfDocRef, userData);
+        final DocumentReference sfHostelDocRef = mDb.collection("hostels")
+                .document(mTextHostelName.getText().toString());
+        Map<String, Object> userHData = new HashMap<>();
+        userHData.put("userId", user.getUid());
+        userHData.put("name", mTextHostelName.getText().toString());
+        userHData.put("location", new GeoPoint(0.0, 0.0));
+        userHData.put("price", mTextHostelPrice.getText().toString());
+        userHData.put("numSingles", mTextHostelSinglesAv.getText().toString());
+        userHData.put("numDoubles", mTextHostelDoublesAv.getText().toString());
+        batch.set(sfHostelDocRef, userHData);
+        batch.commit()
+                .addOnCompleteListener(task -> {
+                    if (task.isComplete()) {
                         if (task.isSuccessful()) {
-                            DocumentReference documentReference = task.getResult();
-                            assert documentReference != null;
-                            Log.d("userData:", "DocumentSnapshot added with ID:" + documentReference.getId());
-                            DocumentSnapshot document = documentReference.get().getResult();
-                            assert document != null;
-                            updateUI(user, document);
-                            if(!mIsStudent) {
-                                saveHostelData(user.getUid());
-                            }
+                            updateUI(user);
                         }
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("userData:", "Error adding document", e);
-                        saveUserDetails(user);
-                    }
+                .addOnFailureListener(e -> {
+                    Log.w("userData:", "Error adding document", e);
+                    saveUserDetails(user);
                 });
     }
 
-    private void saveHostelData(String uid) {
-        Map<String, Object> userData = new HashMap<>();
-        userData.put("userId", uid);
-        userData.put("name", mTextHostelName.getText().toString());
-        userData.put("location", new GeoPoint(0.0,0.0));
-        userData.put("price", mTextHostelPrice.getText().toString());
-        userData.put("numSingles", mTextHostelSinglesAv.getText().toString());
-        userData.put("numDoubles", mTextHostelDoublesAv.getText().toString());
-        mDb.collection("hostels")
-                .add(userData)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Log.d("up_hostel","Hostel Upload Successful");
-                    }
-                });
-    }
+//    private void saveHostelData(FirebaseUser user, DocumentSnapshot document) {
+//        Map<String, Object> userData = new HashMap<>();
+//        userData.put("userId", user.getUid());
+//        userData.put("name", mTextHostelName.getText().toString());
+//        userData.put("location", new GeoPoint(0.0, 0.0));
+//        userData.put("price", mTextHostelPrice.getText().toString());
+//        userData.put("numSingles", mTextHostelSinglesAv.getText().toString());
+//        userData.put("numDoubles", mTextHostelDoublesAv.getText().toString());
+//        mDb.collection("hostels")
+//                .add(userData)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isComplete()) {
+//                        Log.d("up_hostel", "Hostel Upload Successful");
+////                        updateUI(user, document);
+//                    }
+//                });
+//    }
 
-    private void updateUI(FirebaseUser user, DocumentSnapshot document) {
-        mLoadingOverLay.setVisibility(View.INVISIBLE);
+    private void updateUI(FirebaseUser user) {
         if (user != null) {
-            mDm.setUser(new UserModel(user, document));
-            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-            startActivity(intent);
+            mDb.collection(mCollection).document(mFirstName.getText().toString() + "-" + mLastName.getText().toString() + "-data").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot document = task.getResult();
+                    assert document != null;
+                    mLoadingOverLay.setVisibility(View.INVISIBLE);
+                    if (user != null) {
+                        mDm.setUser(new UserModel(user, document));
+                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(RegisterActivity.this, "Authentication failed. Email Address bad format",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

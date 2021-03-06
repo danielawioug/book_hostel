@@ -86,6 +86,7 @@
             android:id="@+id/ratingBar"
             android:layout_width="239dp"
             android:layout_height="57dp"
+            android:background="#AEAEAE"
             android:indeterminate="false"
             android:max="5"
             android:numStars="5"

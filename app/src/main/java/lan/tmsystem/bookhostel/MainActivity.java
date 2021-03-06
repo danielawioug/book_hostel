@@ -117,13 +117,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 Bundle type = new Bundle();
-                if (!mDm.getUser().isManager()) {
-                    type.putInt("loginType", 0);
-                } else {
-                    type.putInt("loginType", 1);
-                }
-                intent.putExtra("type", type);
-                startActivity(intent);
+                if (mDm.getUser() != null) {
+                    if (!mDm.getUser().isManager()) {
+                        type.putInt("loginType", 0);
+                    } else {
+                        type.putInt("loginType", 1);
+                    }
+                    intent.putExtra("type", type);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(MainActivity.this, "User data is retrieving ...", Toast.LENGTH_LONG).show();
             }
         });
 
