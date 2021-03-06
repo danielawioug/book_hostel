@@ -50,8 +50,10 @@ public class HostelRooms extends AppCompatActivity {
         if(mD.size() > 0){
             singRoomNum.setText(mD.get(0) + " Rooms Available");
             doubRoomNum.setText(mD.get(1) + " Rooms Available");
-            doubRoomPrice.setText(Integer.parseInt(price) + "/=");
-            singRoomPrice.setText(Integer.parseInt(price) + 150000 + "/=");
+            doubRoomPrice.setText(Integer.parseInt(price) + 150000 + "/=");
+            doubRoomPrice.setTextSize(24);
+            singRoomPrice.setText(Integer.parseInt(price) + "/=");
+            singRoomPrice.setTextSize(24);
             singBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
