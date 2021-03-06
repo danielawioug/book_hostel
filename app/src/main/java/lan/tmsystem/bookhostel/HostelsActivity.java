@@ -98,10 +98,11 @@ public class HostelsActivity extends AppCompatActivity {
 //                Intent intent = new Intent(view.getContext(), HostelRooms.class);
 //                view.getContext().startActivity(intent);
                 Intent intent = new Intent(view.getContext(), HostelRooms.class);
-                List<String> rooms = new ArrayList<>();
+                ArrayList<String> rooms = new ArrayList<>();
                 rooms.add(data.getNumSingles());
                 rooms.add(data.getNumDoubles());
-                intent.putExtra("hostel", (Serializable)rooms);
+                intent.putStringArrayListExtra("rooms", rooms);
+                intent.putExtra("price", data.getPrice());
                 view.getContext().startActivity(intent);
             });
 
